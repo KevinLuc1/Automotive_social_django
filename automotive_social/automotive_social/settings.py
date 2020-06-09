@@ -122,3 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# the LoginView LogoutView looks for a redirect once submitted
+# sending the redirect to our top level project app template login_msg and logout_msg
+LOGIN_REDIRECT_URL = 'login_msg'
+LOGOUT_REDIRECT_URL = 'logout_msg'

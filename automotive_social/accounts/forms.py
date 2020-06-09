@@ -12,7 +12,7 @@ class UserCreateForm(UserCreationForm):
 
 	# optional customize the labels on the form
 	def __init__(self,*args,**kwargs):
-		self.fields["username"].label = "Display name"
 		super().__init__(*args,**kwargs)
 		self.fields["email"].label = "Email address"
+		self.fields["username"].label = "Display name"
 
