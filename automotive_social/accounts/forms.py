@@ -9,7 +9,7 @@ class UserCreateForm(UserCreationForm):
 		fields = ('username', 'email', 'password1', 'password2')
 		model = get_user_model()
 
-	# customeize the labels on the form
+	# optional customize the labels on the form
 	def __init__(self,*args,**kwargs):
 		super().__init__(*args,**kwargs)
 		self.fields["username"].label = "Display name"
