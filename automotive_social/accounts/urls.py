@@ -3,7 +3,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 
-# for url template 
+# for url template used later ie: {% url 'accounts:login' %}
 app_name = 'accounts'
 
 urlpatterns = [
