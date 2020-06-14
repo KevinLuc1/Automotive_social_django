@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg bg-dark mynav" role="navigation" id="navbar">
       <div class="container">
         <div class="navbar-nav align-items-center">
-          <a class="navbar-brand mynav" href="{% url 'home' %}">automotive Social</a>
+          <a class="navbar-brand mynav" href="{% url 'groups:all' %}">Automotive Social</a>
         </div>
         <div class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
