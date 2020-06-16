@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'accounts',
     'groups',
+    'subgroups',
 ]
 
 MIDDLEWARE = [

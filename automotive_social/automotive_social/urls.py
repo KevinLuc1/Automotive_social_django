@@ -25,5 +25,6 @@ urlpatterns = [
     path('login_msg/', views.LoggedInPage.as_view(), name="login_msg"),
     path('logout_msg/', views.LoggedOutPage.as_view(), name="logout_msg"),
     path('', include("groups.urls", namespace="groups")),
+    path('subgroups/', include("subgroups.urls", namespace="subgroups")),
 
 ]

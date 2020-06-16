@@ -20,8 +20,8 @@ class Group(models.Model):
 		self.slug = slugify(self.name)
 		super().save(*args, **kwargs)
 
-	def get_absolute_url(self):
-		return reverse('groups:all', kwargs={'slug':self.slug})
+	# def get_absolute_url(self):
+	# 	return reverse('groups:single', kwargs={'slug':self.slug})
 
 	class Meta:
 		ordering = ['name']
