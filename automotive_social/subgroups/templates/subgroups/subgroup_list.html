@@ -10,33 +10,48 @@
 
 <div class="col-md-8">
 	this is block group_content for subbbbGROUP DETAIL
+
 	<div class="list-group">
+	
+		<a href="{% url 'subgroups:create' %}" class="btn btn-danger">Create Group</a>
+
+
+		<!-- {{related_subgroups.0.group}} -->
+<!-- 
+		{% for item in related_subgroups %}
+		
+
+				<h4>{{ item }}</h4>
+				                          
+		
+		{% endfor %} -->
+
+
+
+
+
+
 
 		<h2>this is the SUBGROUP detail page</h2>
 
-		<h1>this is subgroup of {{hello}}</h1>
 
-		<h1>show all subgroups {{hello2}}</h1>
+		<h2>break for item in hello2</h2>
 
-		<!-- <h2>{{object_list}}</h2> -->
-
-		{% for item in hello2 %}
-
-		<h4>item{{ item }}</h4>
+		{% for item in related_subgroups %}
+		
+		<a href="#">
+			<h4>{{ item }}</h4>
+		</a>
+		<h4>{{ item.group.slug }}</h4>
 
 		{% endfor %}
 
-		
-		<!-- {% for subgroup in single_group_detail %}
-		<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-			<h3>{{ subgroup }}</h3>
-			
-		</a>
 
-		
 
-		{% endfor %} -->
-	</div><!-- 
-</div> -->
+	</div>
+
+</div>
 {% endblock %}
 
+	
+	<!-- <a class="nav-item nav-link" href="{% url 'groups:create' %}" class="btn btn-simple">Create Group</a> -->

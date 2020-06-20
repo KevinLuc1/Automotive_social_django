@@ -31,8 +31,10 @@ class SubGroup(models.Model):
 		self.slug = slugify(self.name)
 		super().save(*args, **kwargs)
 
-	# def get_absolute_url(self):
-	# 	return reverse('groups:single', kwargs={'slug':self.slug})
+
+	# for the createview to redirect once form is submitted
+	def get_absolute_url(self):
+		return reverse('subgroups:all', kwargs={'slug':self.slug})
 
 
 	class Meta:

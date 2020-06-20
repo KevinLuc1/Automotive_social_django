@@ -3,7 +3,7 @@
 
 {% block group_content %}
 <div class="container">
-  <h4>Create A New Group</h4>
+  <h4>Create A New Post</h4>
   <form method="POST" action="{% url 'subgroups:create' %}" id="subGroupForm">
   	{% csrf_token %}
   	{% bootstrap_form form %}
