@@ -13,22 +13,7 @@
 
 	<div class="list-group">
 	
-		<a href="{% url 'subgroups:create' %}" class="btn btn-danger">Create Group</a>
-
-
-		<!-- {{related_subgroups.0.group}} -->
-<!-- 
-		{% for item in related_subgroups %}
-		
-
-				<h4>{{ item }}</h4>
-				                          
-		
-		{% endfor %} -->
-
-
-
-
+		<a href="{% url 'subgroups:create' %}" class="btn btn-danger">Create New Post</a>
 
 
 
@@ -38,11 +23,27 @@
 		<h2>break for item in hello2</h2>
 
 		{% for item in related_subgroups %}
+
+	
 		
 		<a href="#">
 			<h4>{{ item }}</h4>
+			<div class="d-flex w-40 justify-content-between">
+				<small class="text-muted">
+					
+					Created by {{ item.user }}
+				</small>
+				<small class="text-muted">
+					
+					Created on {{ item.created_at }}
+				</small>
+				<span></span><span></span>
+			</div>
 		</a>
-		<h4>{{ item.group.slug }}</h4>
+			
+
+
+
 
 		{% endfor %}
 
@@ -54,4 +55,3 @@
 {% endblock %}
 
 	
-	<!-- <a class="nav-item nav-link" href="{% url 'groups:create' %}" class="btn btn-simple">Create Group</a> -->

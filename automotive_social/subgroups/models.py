@@ -32,9 +32,10 @@ class SubGroup(models.Model):
 		super().save(*args, **kwargs)
 
 
-	# for the createview to redirect once form is submitted
+	# for the createview to redirect once form is submitted, 
+	# redirects back to subgroup page you just created a new post on
 	def get_absolute_url(self):
-		return reverse('subgroups:all', kwargs={'slug':self.slug})
+		return reverse('subgroups:all', kwargs={'slug':self.group.slug})
 
 
 	class Meta:

@@ -26,9 +26,17 @@ class CreateSubGroup(LoginRequiredMixin, generic.CreateView):
 		self.object = form.save(commit=False)
 		# we need to connect this new post to the actual user itself at the request
 		self.object.user = self.request.user
+
+		print("hello {}".format(self.request))
+		# self.object.group = self.request
+
 		# hard save, send to database
 		self.object.save()
 		return super().form_valid(form)
+
+
+
+
 
 
 
