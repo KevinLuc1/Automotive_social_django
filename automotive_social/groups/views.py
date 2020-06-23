@@ -3,23 +3,28 @@ from django.views import generic
 from groups.models import Group
 # from . import models
 
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
+
 
 class ListGroups(generic.ListView):
 	# automatically looks for a group_list.html
 	model = Group
 
-# # displays all the subgroups based on group clicked
-# class SingleGroup(generic.DetailView):
-# 	# auto looks for group_detail.html
-# 	model = Group
-
-	# context_object_name = 'single_group_detail'
-
-
-
 	# def get_context_data(self, **kwargs):
-		
 	# 	context = super().get_context_data(**kwargs)
-	# 	context['single_group_detail'] = Group.objects.all()
+
+	# 	# save the pk of most recent subgroup clicked. pull this when creating reply
+	# 	# rigging to use first_name inside User model instead of creating new field
+
+	# 	current_user = self.request.user
+
+	# 	save_pk_of_subgroup_clicked = User.objects.get(username=current_user)
+
+	# 	save_pk_of_subgroup_clicked.first_name = self.object.pk
+
+	# 	save_pk_of_subgroup_clicked.save()
 
 	# 	return context

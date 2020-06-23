@@ -73,5 +73,31 @@ class ListSingleSubGroup(generic.DetailView):
 	model = SubGroup
 
 
+	# def get_queryset(self):
+	# 	queryset = super().get_queryset()
+
+
+
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+
+		# save the pk of most recent subgroup clicked. pull this when creating reply
+		# rigging to use last_name inside User model instead of creating new field
+
+		current_user = self.request.user
+
+		save_pk_of_subgroup_clicked = User.objects.get(username=current_user)
+
+		save_pk_of_subgroup_clicked.last_name = self.object.pk
+
+		save_pk_of_subgroup_clicked.save()
+
+		return context
+
+
+
+
+
 
 
