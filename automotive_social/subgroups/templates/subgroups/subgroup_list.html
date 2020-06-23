@@ -24,22 +24,21 @@
 
 		{% for item in related_subgroups %}
 
-	
-		
-		<a href="#">
+
+		<a href="{% url 'subgroups:replies' pk=item.pk %}">
+
 			<h4>{{ item }}</h4>
+			<h4>{{ item.pk }}</h4>
+		</a>
 			<div class="d-flex w-40 justify-content-between">
 				<small class="text-muted">
-					
 					Created by {{ item.user }}
 				</small>
 				<small class="text-muted">
-					
 					Created on {{ item.created_at }}
 				</small>
 				<span></span><span></span>
 			</div>
-		</a>
 			
 
 
@@ -54,4 +53,9 @@
 </div>
 {% endblock %}
 
+
+<!-- <a href="{% url 'subgroups:replies' %}"> -->
+
+
+		<a href="{% url 'subgroups:replies' pk=item.pk slug=item.slug %}">
 	

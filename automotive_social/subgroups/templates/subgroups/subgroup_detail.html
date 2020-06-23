@@ -1,0 +1,65 @@
+{% extends 'subgroups/subgroup_base.html' %}
+{% block pregroup %}
+<div class="container">
+	<h1>{{ subgroup.name }}</h1>
+	<h5>by {{subgroup.user}}</h5>
+	<h5>subgroup pk {{subgroup.pk}}</h5>
+
+	<h5>context hello {{hello.group}}</h5>
+
+</div>
+
+<!-- {{ subgroup.replies.all  }} -->
+
+{% endblock %}
+
+
+
+
+{% block group_content %}
+
+
+<div class='container'>
+	{% if user.is_authenticated %}
+		
+		<a href="{% url 'replies:create' %}" class="btn btn-danger">Reply</a>
+
+	{% else %}
+
+	{% endif %}
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-md-8">
+	
+
+	{% if subgroup.replies_relatedname.count == 0 %}
+		<h2>No post in this group yet</h2>
+	{% else %}
+		{% for each_reply in subgroup.replies_relatedname.all %}
+			<h3>{{each_reply}}</h3>
+			<h6>{{each_reply.user}}</h6>
+			<h6>{{each_reply.created_at}}</h6>
+			<h4>--------------</h4>
+
+		{% endfor %}
+
+	{% endif %}
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}

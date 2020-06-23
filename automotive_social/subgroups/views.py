@@ -7,9 +7,17 @@ from django.views import generic
 from django.shortcuts import get_object_or_404
 
 from subgroups.models import SubGroup
-# from groups.models import Group
+
+from replies.models import Reply
+
 
 from . import models
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
+
 
 # Create your views here.
 
@@ -33,11 +41,6 @@ class CreateSubGroup(LoginRequiredMixin, generic.CreateView):
 		# hard save, send to database
 		self.object.save()
 		return super().form_valid(form)
-
-
-
-
-
 
 
 
@@ -66,10 +69,8 @@ class ListSubGroups(generic.ListView):
 
 # auto looks for subgroup_detail.html
 # shows details about the subgroup, like posts inside the subgroup
-class ListSingleSubGroup(LoginRequiredMixin, generic.DetailView):
+class ListSingleSubGroup(generic.DetailView):
 	model = SubGroup
-
-
 
 
 

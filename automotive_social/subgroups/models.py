@@ -13,8 +13,8 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class SubGroup(models.Model):
-	name = models.CharField(max_length=50, unique=True)
-	slug = models.SlugField(allow_unicode=True, unique=True, blank=True)
+	name = models.CharField(max_length=50)
+	slug = models.SlugField(allow_unicode=True, blank=True)
 	description = models.TextField(blank=True, default='')
 	created_at = models.DateTimeField(auto_now=True)
 	# subscribers = models.ManyToManyField(User, through="Subscriber")

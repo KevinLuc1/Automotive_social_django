@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="posts-page">
+	<div class="container">
+		{% block prereply %}{% endblock %}
+		{% block reply_content %}{% endblock %}
+		{% block post_reply %}{% endblock %}
+	</div>
+</div>
+{% endblock %}
