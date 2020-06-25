@@ -15,7 +15,7 @@ from . import models
 # Create your views here.
 
 # anyone logged in can create a reply
-class CreateReply(generic.CreateView):
+class CreateReply(LoginRequiredMixin, generic.CreateView):
 	# allowable fields to enter from Reply model
 	fields = ('message',)
 	model = Reply

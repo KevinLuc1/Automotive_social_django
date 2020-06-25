@@ -17,7 +17,6 @@ class SubGroup(models.Model):
 	slug = models.SlugField(allow_unicode=True, blank=True)
 	description = models.TextField(blank=True, default='')
 	created_at = models.DateTimeField(auto_now=True)
-	# subscribers = models.ManyToManyField(User, through="Subscriber")
 
 
 	user = models.ForeignKey(User, related_name='subgroups',on_delete=models.CASCADE)
@@ -40,19 +39,3 @@ class SubGroup(models.Model):
 
 	class Meta:
 		ordering = ['-created_at']
-
-
-
-
-# class Subscriber(models.Model):
-# 	# the Subscriber is related to the Group class through this foreignkey which we called subs
-# 	group = models.ForeignKey(SubGroup, related_name="subs",on_delete=models.CASCADE)
-# 	# grab current User from get_user_model
-# 	# the Subscriber is related to the User model through this foreignkey which we called user_groups
-# 	user = models.ForeignKey(User, related_name="user_groups",on_delete=models.CASCADE)
-
-# 	def __str__(self):
-# 		return self.user.username
-
-# 	class Meta:
-# 		unique_together = ('group', 'user')

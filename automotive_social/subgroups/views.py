@@ -65,40 +65,43 @@ class ListSubGroups(generic.ListView):
 		context['related_subgroups'] = SubGroup.objects.filter(group__slug=self.kwargs['slug'])
 
 
-		'''
-		Once the user clicks on a item in ListView, I want to save the primary key of that Group
-		We'll later use that pk to fill in the group field when creating a new subgroup/ new post
-		'''
 
-		# save the request.path of the url
-		# returns:  /subgroups/audi
-		path_name = self.request.path
 
-		# split the path name at the '/'
-		# returns:  ['', 'subgroups', 'audi']
-		path_name_split = path_name.split('/')
+		if self.request.user.is_authenticated:
+			'''
+			Once the user clicks on a item in ListView, I want to save the primary key of that Group
+			We'll later use that pk to fill in the group field when creating a new subgroup/ new post
+			'''
 
-		# save the slug name used in the url path
-		# returns:  audi 
-		slug_from_url = path_name_split[-1]
+			# save the request.path of the url
+			# returns:  /subgroups/audi
+			path_name = self.request.path
 
-		# filter through Group objects and look for the group where slug is equal to slug from url
-		data_from_group = Group.objects.filter(slug=slug_from_url)
+			# split the path name at the '/'
+			# returns:  ['', 'subgroups', 'audi']
+			path_name_split = path_name.split('/')
 
-		# grab the primary key of the Group based off the slug input
-		pk_to_send_to_user_model = data_from_group.get().pk
+			# save the slug name used in the url path
+			# returns:  audi 
+			slug_from_url = path_name_split[-1]
 
-		# this is the current active user logged in
-		current_user = self.request.user
+			# filter through Group objects and look for the group where slug is equal to slug from url
+			data_from_group = Group.objects.filter(slug=slug_from_url)
 
-		# Grab the username inside User model based on the current active logged in user
-		mypk = User.objects.get(username=current_user)
+			# grab the primary key of the Group based off the slug input
+			pk_to_send_to_user_model = data_from_group.get().pk
 
-		# overwrite the default first_name field with the primary key of group that was clicked on
-		mypk.first_name = pk_to_send_to_user_model
+			# this is the current active user logged in
+			current_user = self.request.user
 
-		# send to database the pk, we'll later use this pk to for creating new subgroups/creating new posts
-		mypk.save()
+			# Grab the username inside User model based on the current active logged in user
+			mypk = User.objects.get(username=current_user)
+
+			# overwrite the default first_name field with the primary key of group that was clicked on
+			mypk.first_name = pk_to_send_to_user_model
+
+			# send to database the pk, we'll later use this pk to for creating new subgroups/creating new posts
+			mypk.save()
 
 		return context
 
@@ -113,19 +116,22 @@ class ListSingleSubGroup(generic.DetailView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 
-		# save the pk of most recent subgroup clicked. pull this when creating reply
-		# rigging to use last_name inside User model instead of creating new field
 
-		current_user = self.request.user
+		if self.request.user.is_authenticated:
 
-		save_pk_of_subgroup_clicked = User.objects.get(username=current_user)
+			# save the pk of most recent subgroup clicked. pull this when creating reply
+			# rigging to use last_name inside User model instead of creating new field
 
-		save_pk_of_subgroup_clicked.last_name = self.object.pk
+			current_user = self.request.user
 
-		print("this is self.object inside views py subgroups: {}".format(self.object))
-		# print("this is self.object.group inside views py subgroups: {}".format(self.object.group))
+			save_pk_of_subgroup_clicked = User.objects.get(username=current_user)
 
-		save_pk_of_subgroup_clicked.save()
+			save_pk_of_subgroup_clicked.last_name = self.object.pk
+
+			print("this is self.object inside views py subgroups: {}".format(self.object))
+			# print("this is self.object.group inside views py subgroups: {}".format(self.object.group))
+
+			save_pk_of_subgroup_clicked.save()
 
 		return context
 
