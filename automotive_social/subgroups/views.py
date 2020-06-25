@@ -32,16 +32,18 @@ class CreateSubGroup(LoginRequiredMixin, generic.CreateView):
 	def form_valid(self, form):
 		# soft save, dont send to database yet
 		self.object = form.save(commit=False)
+		# we have a required username field
 		# we need to connect this new post to the actual user itself at the request
 		self.object.user = self.request.user
-
+		# the primary key of the most recent group clicked was saved to the user's "first_name" field
+		# save the pk we saved
 		mypk = self.request.user.first_name
-
+		# look for the name of the Group based off the primary key we saved
 		name_of_group = Group.objects.get(pk=mypk)
-
+		# we have a required group field
+		# assign the name of group to the group field inside the form
 		self.object.group = name_of_group
-
-
+		# hard save the form to send info to the database
 		self.object.save()
 		return super().form_valid(form)
 
