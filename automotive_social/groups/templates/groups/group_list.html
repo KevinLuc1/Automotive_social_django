@@ -3,7 +3,7 @@
 {% block pregroup %}
 <div class="col-md-4">
 	<div class="content">
-		<p>Welcome, this is pregroup block for group LIST</p>
+		<p></p>
 		<h1>Welcome to Automotive Social</h1>
 	</div>
 
@@ -13,15 +13,15 @@
 {% block group_content %}
 
 <div class="col-md-8">
-	this is block group_content
+
 	<div class="list-group">
-		{{ object_list }}
+
 		{% for group in object_list %}
 		<!-- "{% url 'subgroups:all' slug=group.slug %}" -->
 		<a href="{% url 'subgroups:all' slug=group.slug %}" class="list-group-item list-group-item-action flex-column align-items-start">
 			<h3>{{ group.name }}</h3>
-			<h5>slug {{ group.slug }}</h5>
-			<h5>pk {{ group.pk }}</h5>
+<!-- 			<h5>slug {{ group.slug }}</h5>
+			<h5>pk {{ group.pk }}</h5> -->
 			
 		</a>
 

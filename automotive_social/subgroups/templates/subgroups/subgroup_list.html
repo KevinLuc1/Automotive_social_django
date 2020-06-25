@@ -9,18 +9,21 @@
 {% block group_content %}
 
 <div class="col-md-8">
-	this is block group_content for subbbbGROUP DETAIL
-
 	<div class="list-group">
-	
-		<a href="{% url 'subgroups:create' %}" class="btn btn-danger">Create New Post</a>
+		<h4>{{ this_group_name }}</h4>
+
+		{% if user.is_authenticated %}
+
+			<a href="{% url 'subgroups:create' %}" class="btn btn-danger">Create New Post</a>
+		
+		{% endif %}
 
 
 
-		<h2>this is the SUBGROUP detail page</h2>
 
 
-		<h2>break for item in hello2</h2>
+		<h4>{{ group.name }}</h4>	
+
 
 		{% for item in related_subgroups %}
 

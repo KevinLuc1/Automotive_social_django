@@ -64,33 +64,40 @@ class ListSubGroups(generic.ListView):
 		# context related_subgroups will be used inside the url template of the subgroup_list.html page
 		context['related_subgroups'] = SubGroup.objects.filter(group__slug=self.kwargs['slug'])
 
+		context['this_group_name'] = SubGroup.objects.all().filter()
 
 
 
+
+		
+		'''
+		Once the user clicks on a item in ListView, I want to save the primary key of that Group
+		We'll later use that pk to fill in the group field when creating a new subgroup/ new post
+		'''
+
+		# save the request.path of the url
+		# returns:  /subgroups/audi
+		path_name = self.request.path
+
+		# split the path name at the '/'
+		# returns:  ['', 'subgroups', 'audi']
+		path_name_split = path_name.split('/')
+
+		# save the slug name used in the url path
+		# returns:  audi 
+		slug_from_url = path_name_split[-1]
+
+		# filter through Group objects and look for the group where slug is equal to slug from url
+		data_from_group = Group.objects.filter(slug=slug_from_url)
+
+		# grab the primary key of the Group based off the slug input
+		pk_to_send_to_user_model = data_from_group.get().pk
+
+		# send the name of this current group to the subgroup_list.html as a context dictionary
+		context['this_group_name'] = data_from_group.get().name    
+
+		# add authenicated otherwise non logged in users will crash
 		if self.request.user.is_authenticated:
-			'''
-			Once the user clicks on a item in ListView, I want to save the primary key of that Group
-			We'll later use that pk to fill in the group field when creating a new subgroup/ new post
-			'''
-
-			# save the request.path of the url
-			# returns:  /subgroups/audi
-			path_name = self.request.path
-
-			# split the path name at the '/'
-			# returns:  ['', 'subgroups', 'audi']
-			path_name_split = path_name.split('/')
-
-			# save the slug name used in the url path
-			# returns:  audi 
-			slug_from_url = path_name_split[-1]
-
-			# filter through Group objects and look for the group where slug is equal to slug from url
-			data_from_group = Group.objects.filter(slug=slug_from_url)
-
-			# grab the primary key of the Group based off the slug input
-			pk_to_send_to_user_model = data_from_group.get().pk
-
 			# this is the current active user logged in
 			current_user = self.request.user
 
