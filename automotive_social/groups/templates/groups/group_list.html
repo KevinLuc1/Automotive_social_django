@@ -1,11 +1,24 @@
 {% extends "groups/group_base.html" %}
 
 {% block pregroup %}
-<div class="col-md-4">
-	<div class="content">
+<div style="margin-top: 20px" class="col-md-4">
+	<!-- <div class="content">
 		<p></p>
 		<h1>Welcome to Automotive Social</h1>
 	</div>
+ -->
+	{% if user.is_authenticated %}
+		<h3>Welcome Back to Automotive Social @{{ user.username }}</h3>
+		
+	{% else %}
+		<!-- <h3>Please <a href="#" class="btn btn-danger">Log In</a> or <a href="#" class="btn btn-danger">Sign Up</a> to Start a New Post  </h3> -->
+		<h3>Welcome to Automotive Social</h3>
+		<h3>To Start a New Post</h3>
+		<h3><a href="{% url 'accounts:login' %}" class="btn btn-danger">Log In</a> or <a href="{% url 'accounts:signup' %}" class="btn btn-danger">Sign Up</a></h3>
+	
+	{% endif %}
+
+
 
 </div>
 {% endblock %}
@@ -14,11 +27,11 @@
 
 <div class="col-md-8">
 
-	<div class="list-group">
+	<div class="list-group" style="margin-top: 20px">
 
 		{% for group in object_list %}
 		<!-- "{% url 'subgroups:all' slug=group.slug %}" -->
-		<a href="{% url 'subgroups:all' slug=group.slug %}" class="list-group-item list-group-item-action flex-column align-items-start">
+		<a href="{% url 'subgroups:all' slug=group.slug %}" class="list-group-item list-group-item-action flex-column align-items-start" style="color: #4185FB">
 			<h3>{{ group.name }}</h3>
 <!-- 			<h5>slug {{ group.slug }}</h5>
 			<h5>pk {{ group.pk }}</h5> -->

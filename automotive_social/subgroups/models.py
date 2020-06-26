@@ -17,6 +17,7 @@ class SubGroup(models.Model):
 	slug = models.SlugField(allow_unicode=True, blank=True)
 	description = models.TextField(blank=True, default='')
 	created_at = models.DateTimeField(auto_now=True)
+	
 
 
 	user = models.ForeignKey(User, related_name='subgroups',on_delete=models.CASCADE)

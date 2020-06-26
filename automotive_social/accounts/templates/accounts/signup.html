@@ -4,8 +4,8 @@
 {% block content %}
 
 <div class='container'>
-	<h1>Sign Up</h1>
-	<form method="POST">
+	<h1 style="margin-top: 20px">Sign Up</h1>
+	<form method="POST" style="margin-top: 20px">
 		{% csrf_token %}	
 		{% bootstrap_form form %}
 		<input type="submit" class='btn btn-default' value='Login'>
