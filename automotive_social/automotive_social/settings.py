@@ -24,9 +24,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 SECRET_KEY = 'gpw*_ot%gvy_4(bdy%j%^c5qx77ggt-faok8&*bd3-q=5w=3*+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['automotive-social.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
